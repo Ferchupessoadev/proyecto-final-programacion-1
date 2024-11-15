@@ -10,6 +10,7 @@ void clearScreen();
 bool fileExists();
 void showContact(Contact contact);
 void setContact(Contact *contact);
+void sortContacts(Contact *contacts, int countContacts);
 
 } // namespace helpers
 
