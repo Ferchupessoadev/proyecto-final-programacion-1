@@ -2,6 +2,7 @@
 #include "../include/contact.hpp"
 #include "../include/helpers.hpp"
 #include <cstdio>
+#include <cstring>
 #include <iostream>
 #include <ostream>
 
@@ -61,6 +62,33 @@ void read(FILE *&file) {
   std::cin.ignore();
   std::cin.get();
   helpers::clearScreen();
+}
+
+void sortAndExportRecords(FILE *&file, FILE *&sortFile) {
+  helpers::clearScreen();
+  file = fopen("data.bat", "rb");
+  sortFile = fopen("sortedData.bat", "wb");
+  int countContacts = 0;
+
+  if (file == NULL) {
+    std::cout << "Error abriendo el archivo" << std::endl;
+    return;
+  }
+  Contact contact;
+
+  while (fread(&contact, sizeof(Contact), 1, file) == 1) {
+    countContacts++;
+  }
+
+  Contact contacts[countContacts];
+
+  rewind(file);
+
+  for (int i = 0; i < countContacts; i++) {
+    fread(&contacts[i], sizeof(Contact), 1, file);
+  }
+
+  helpers::sortContacts(contacts, countContacts);
 }
 
 } // namespace events

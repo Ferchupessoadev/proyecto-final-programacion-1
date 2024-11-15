@@ -8,6 +8,7 @@
 int main(int argc, char *argv[]) {
   char option;
   FILE *file = NULL;
+  FILE *sortedFile = NULL;
   Contact contact;
 
   helpers::clearScreen();
@@ -36,6 +37,9 @@ int main(int argc, char *argv[]) {
       break;
     case '3':
       events::read(file);
+      break;
+    case '4':
+      events::sortAndExportRecords(file, sortedFile);
       break;
     case '8':
       helpers::clearScreen();
