@@ -89,6 +89,10 @@ void sortAndExportRecords(FILE *&file, FILE *&sortFile) {
   }
 
   helpers::sortContacts(contacts, countContacts);
+
+  for (int i = 0; i < countContacts; i++) {
+    fwrite(&contacts[i], sizeof(Contact), 1, sortFile);
+  }
 }
 
 } // namespace events

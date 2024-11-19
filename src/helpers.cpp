@@ -61,8 +61,6 @@ void setContact(Contact *contact) {
 
 /*
  * Sorts an array. It uses the bubble sort algorithm
- * I could use std::sort but my teacher wants me to implement my own
- * implementation of bubble sort
  */
 void sortContacts(Contact *contacts, int countContacts) {
   for (int i = 0; i < countContacts - 1; i++) {
