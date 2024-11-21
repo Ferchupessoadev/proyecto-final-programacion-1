@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     std::cout << "3. Mostrar registros" << std::endl;
     std::cout << "4. ordenar registros" << std::endl;
     std::cout << "5. mostrar registros ordenados" << std::endl;
-    std::cout << "6. buscar registros" << std::endl;
+    std::cout << "6. limpiar" << std::endl;
     std::cout << "8. Salir" << std::endl;
 
     std::cout << "Opcion: ";
@@ -41,6 +41,12 @@ int main(int argc, char *argv[]) {
     case '4':
       events::sortAndExportRecords(file, sortedFile);
       break;
+    case '5':
+      events::readSortedFile(sortedFile);
+      break;
+    case '6':
+      helpers::clearScreen();
+      break;
     case '8':
       helpers::clearScreen();
       break;
@@ -51,6 +57,10 @@ int main(int argc, char *argv[]) {
   // close the file if it was opened
   if (file != NULL) {
     fclose(file);
+  }
+
+  if (sortedFile != NULL) {
+    fclose(sortedFile);
   }
 
   return 0;

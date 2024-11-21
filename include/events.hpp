@@ -11,6 +11,7 @@ void read(FILE *&file);
 void init(FILE *&file);
 void sortAndExportRecords(FILE *&file, FILE *&sortedFile);
 void sortContacts(Contact *contacts, int countContacts);
+void readSortedFile(FILE *&sortedFile);
 
 } // namespace events
 

@@ -1,6 +1,7 @@
 #include "../include/events.hpp"
 #include "../include/contact.hpp"
 #include "../include/helpers.hpp"
+#include <cstddef>
 #include <cstdio>
 #include <cstring>
 #include <iostream>
@@ -85,13 +86,34 @@ void sortAndExportRecords(FILE *&file, FILE *&sortFile) {
   rewind(file);
 
   for (int i = 0; i < countContacts; i++) {
-    fread(&contacts[i], sizeof(Contact), 1, file);
+    fread(&contact, sizeof(Contact), 1, file);
+    contacts[i] = contact;
   }
 
   helpers::sortContacts(contacts, countContacts);
 
   for (int i = 0; i < countContacts; i++) {
     fwrite(&contacts[i], sizeof(Contact), 1, sortFile);
+  }
+
+  if (sortFile != NULL) {
+    fclose(sortFile);
+  }
+}
+
+void readSortedFile(FILE *&sortedFile) {
+  sortedFile = fopen("sortedData.bat", "rb");
+  Contact contact;
+
+  if (sortedFile == NULL) {
+    std::cout << "Error abriendo el archivo." << std::endl;
+    return;
+  }
+
+  std::cout << "OK" << std::endl;
+
+  while (fread(&contact, sizeof(Contact), 1, sortedFile) == 1) {
+    helpers::showContact(contact);
   }
 }
 

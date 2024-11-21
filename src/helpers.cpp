@@ -40,8 +40,10 @@ bool fileExists(const char *filename) {
  * Show a contact struct
  */
 void showContact(Contact contact) {
-  std::cout << "| " << contact.name << " | " << contact.phone << " | "
-            << contact.email << " |" << std::endl;
+  std::cout << "Name: " << contact.name << std::endl
+            << "phone: " << contact.phone << std::endl
+            << "email: " << contact.email << std::endl
+            << std::endl;
 }
 
 void setContact(Contact *contact) {
